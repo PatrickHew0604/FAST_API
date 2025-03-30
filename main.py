@@ -1,7 +1,9 @@
 from fastapi import FastAPI, HTTPException
 import numpy as np
 from tensorflow.keras.models import load_model
-from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.preprocessing import LabelEncoder, StandardScaler  
+import uvicorn
+
 
 app = FastAPI()
 
@@ -61,8 +63,3 @@ def predict_category(data: dict):
     except Exception as e:
         print(f"Error: {e}")  # Debugging line
         raise HTTPException(status_code=400, detail=str(e))
-
-# Run FastAPI server if executed as main script
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8080)
